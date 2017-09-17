@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for application project.
 
@@ -11,14 +12,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 config = ConfigParser()
-config.read(os.path.join(BASE_DIR, '../django.conf'))
+config.read(os.path.join(BASE_DIR, 'web2.conf'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -29,7 +30,7 @@ SECRET_KEY = config.get('main', 'SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['web2.lvh.me',]
 
 
 # Application definition
@@ -42,7 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'core.apps.CoreConfig',
+    'user',
+    'auxiliary',
+    'like.apps.LikeConfig',
+    'comment.apps.CommentConfig',
+    'post.apps.PostConfig',
+    'wall.apps.WallConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +64,7 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = '127.0.0.1',
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'user.User'
 
 ROOT_URLCONF = 'application.urls'
 
@@ -86,7 +92,7 @@ WSGI_APPLICATION = 'application.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config.get('db', 'NAME'),
         'USER': config.get('db', 'USER'),
         'PASSWORD': config.get('db', 'PASSWORD'),
@@ -132,3 +138,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

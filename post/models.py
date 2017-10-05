@@ -15,14 +15,13 @@ class Post(ModelWithDates, ModelWithAuthor, LikeAble, CommentAble, Watchable):
     def like_to_text(self, instance):
         return 'User {} liked post {}'.format(instance.author, self.text[0:10])
 
-    def get_entry_text_user_repeat(self, ex_instance, instance, created, iteration):
-        if created:
+    def get_entry_text_user(self, event_type):
+        if event_type == Watchable.CREATION:
             return ['{} created post {}'.format(self.author, self.text[0:10]),
                     self.author,
-                    0
             ]
-        elif self.text != ex_instance.text:
-            return ['{} edited post {}'.format(self.author, self.text[0:10]),
-                    self.author,
-                    0
-            ]
+        elif event_type == Watchable.UPDATE:
+            if self.text != self.watchable_ex.text:
+                return ['{} edited post {}'.format(self.author, self.text[0:10]),
+                        self.author,
+                ]

@@ -11,10 +11,10 @@ class Like(ModelWithDates, ModelWithAuthor, Watchable):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    def get_entry_text_user_repeat(self, ex_instance, instance, created, iteration):
-        if created:
-            text = self.content_object.like_to_text(instance)
-            return [text, self.author, 0]
+    def get_entry_text_user(self, event_type):
+        if event_type == Watchable.CREATION:
+            text = self.content_object.like_to_text(self)
+            return [text, self.author]
 
     def __str__(self):
         return "{}'s like".format(self.author)

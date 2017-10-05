@@ -7,18 +7,19 @@ from .models import Watchable, Entry
 
 def watchable_postinit(instance, **kwargs):
     
-    instance.ex = deepcopy(instance)
+    instance.watchable_ex = deepcopy(instance)
 
 
 def watchable_postsave(instance, created=False, **kwargs):
-    iteration = 1
-    while iteration:
-        res = instance.get_entry_text_user_repeat(instance.ex, instance, created, iteration)
+    chain = instance.chains['creation'] if created else instance.chains['update']
+    print(chain)
+    for event_type in chain:
+        res = instance.get_entry_text_user(event_type)
         if res == None:
             return None
-        text, user, iteration = res
+        text, user = res
         instance.ex = None
-        entry = Entry(text=text, content_object=instance, user=user)
+        entry = Entry(text=text, content_object=instance, user=user, event_type=event_type)
         entry.save()
 
 for model in Watchable.__subclasses__():

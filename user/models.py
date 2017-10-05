@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 from wall.models import Watchable
 
+from copy import deepcopy
 
 class User(AbstractUser):
 
@@ -14,15 +15,18 @@ class UserToUser(Watchable):
     from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
     to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
 
-    def get_entry_text_user_repeat(self, ex_instance, instance, created, iteration):
-        if created and iteration == 1:
+    chains = deepcopy(Watchable.chains)
+    WATCHABLE_FIRST = 4
+    WATCHABLE_SECOND = 5
+    chains['creation'] = [WATCHABLE_FIRST, WATCHABLE_SECOND]
+
+    def get_entry_text_user(self, event_type):
+        if event_type == self.WATCHABLE_FIRST:
             return ['User {} now follows {}'.format(self.from_user, self.to_user),
                     self.from_user,
-                    2
             ]
-        elif created and iteration == 2:
+        elif event_type == self.WATCHABLE_SECOND:
             return ['User {} now follows {}'.format(self.from_user, self.to_user),
                     self.to_user,
-                    0
             ]
 

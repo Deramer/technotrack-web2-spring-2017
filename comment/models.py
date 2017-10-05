@@ -16,17 +16,15 @@ class Comment(ModelWithDates, ModelWithAuthor, LikeAble, Watchable):
     def like_to_text(self, instance):
         return 'User {} liked comment {}.'.format(instance.author, self.text[0:10])
 
-    def get_entry_text_user_repeat(self, ex_instance, instance, created, iteration):
-        if created:
+    def get_entry_text_user(self, event_type):
+        if event_type == Watchable.CREATION:
             return ['{} left comment {}.'.format(self.author, self.text[0:10]),
                     self.author,
-                    0,
             ]
-        else:
-            if instance.text != ex_instance.text:
+        elif event_type == Watchable.UPDATE:
+            if self.text != self.watchable_ex.text:
                 return ['{} edited comment {}.'.format(self.author, self.text[0:10]),
                         self.author,
-                        0,
                 ]
 
     def __str__(self):

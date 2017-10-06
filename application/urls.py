@@ -17,8 +17,25 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 
+from rest_framework import routers
+
+from post import views as post_views
+from user import views as user_views
+from wall import views as wall_views
+from like import views as like_views
+
+
+router = routers.DefaultRouter()
+router.register('posts', post_views.PostViewSet)
+router.register('users', user_views.UserViewSet)
+router.register('follows', user_views.UserToUserViewSet)
+router.register('entries', wall_views.EntryViewSet)
+router.register('likes', like_views.LikeViewSet)
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls')),
 ]
 
 if settings.DEBUG:

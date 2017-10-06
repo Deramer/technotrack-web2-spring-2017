@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'comment.apps.CommentConfig',
     'post.apps.PostConfig',
     'wall.apps.WallConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

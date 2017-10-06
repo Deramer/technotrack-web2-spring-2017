@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'wall.apps.WallConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +104,15 @@ DATABASES = {
 }
 
 
+AUTHENTICATION_BACKENDS = (
+        'social_core.backends.vk.VKOAuth2',
+        'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_AUTHENTICATION_BACKENDS = ('social_core.backends.vk.VKOAuth2',)
+
+SOCIAL_AUTH_VK_OUATH2_SCOPE = ['email',]
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -140,3 +151,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+                'rest_framework.authentication.BasicAuthentication',
+                'rest_framework.authentication.SessionAuthentication',
+                'rest_framework.authentication.TokenAuthentication',
+        )
+}
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('vk', 'KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('vk', 'SECRET')

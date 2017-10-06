@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 
 from rest_framework import routers
+from rest_framework.authtoken import views as auth_views
 
 from post import views as post_views
 from user import views as user_views
@@ -36,6 +37,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'api-token-auth/', auth_views.obtain_auth_token),
+    url(r'', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,45 @@
+{
+  "name": "web2",
+  "version": "1.0.0",
+  "description": "Technotrack web-architecture project, 2 semestr, js part.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/.bin/webpack",
+    "build": "NODE_ENV=prod node_modules/.bin/webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deramer/track-web2-js.git"
+  },
+  "author": "Arseniy Nestyuk <arseniy.nestyuk@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Deramer/track-web2-js/issues"
+  },
+  "homepage": "https://github.com/Deramer/track-web2-js#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "file-loader": "^1.1.5",
+    "node-static": "^0.7.10",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.7.1",
+    "webpack-bundle-tracker": "^0.2.0",
+    "webpack-preset-babel-stage-1": "^0.2.0"
+  }
+}

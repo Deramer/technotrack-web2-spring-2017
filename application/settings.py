@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'social_django',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +152,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'assets'),
+)
 
 REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -162,3 +166,10 @@ REST_FRAMEWORK = {
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('vk', 'KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('vk', 'SECRET')
+
+WEBPACK_LOADER = {
+        'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILES': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        },
+}

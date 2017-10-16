@@ -6,7 +6,8 @@ from .models import Post
 class PostSerializer(serializers.ModelSerializer):
 
     id = serializers.ReadOnlyField()
-    author = serializers.ReadOnlyField(source='author.id')
+    author_id = serializers.ReadOnlyField(source='author.id')
+    author_username = serializers.ReadOnlyField(source='author.username')
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
     content_type = serializers.SerializerMethodField()
@@ -16,4 +17,6 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('author', 'text', 'created', 'updated', 'comments_count', 'likes_count', 'content_type', 'id')
+        fields = ('author_id', 'author_username',
+                'text', 'created', 'updated', 'comments_count',
+                'likes_count', 'content_type', 'id')

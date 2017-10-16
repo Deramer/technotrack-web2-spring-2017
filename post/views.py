@@ -11,7 +11,7 @@ from auxiliary.permissions import IsOwnerOrReadOnly
 class PostViewSet(viewsets.ModelViewSet):
 
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().select_related('author')
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly, FilterPostsByUserPermission)
 
     def perform_create(self, serializer):

@@ -1,5 +1,6 @@
 const apiUrls = {
-    postList: '/api/posts',
+    postList: '/api/posts/',
+    wall: '/api/entries/',
 };
 
 export default apiUrls;

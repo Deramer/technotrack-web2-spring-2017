@@ -12,7 +12,7 @@ from auxiliary.permissions import ReadOnly
 class EntryViewSet(viewsets.ModelViewSet):
 
     serializer_class = EntrySerializer
-    queryset = Entry.objects.all()
+    queryset = Entry.objects.all().select_related('user')
     permission_classes = (permissions.IsAuthenticated, ReadOnly, FilterEntriesByUser)
 
     def get_queryset(self):

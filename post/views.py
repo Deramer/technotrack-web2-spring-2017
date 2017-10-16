@@ -7,7 +7,6 @@ from .serializers import PostSerializer
 from .permissions import FilterPostsByUserPermission
 from auxiliary.permissions import IsOwnerOrReadOnly
 
-
 class PostViewSet(viewsets.ModelViewSet):
 
     serializer_class = PostSerializer

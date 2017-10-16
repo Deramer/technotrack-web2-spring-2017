@@ -4,7 +4,7 @@ import Header from './Header';
 
 class App extends React.Component {
     state = {
-        page: 'posts',
+        page: 'wall',
     };
 
     render() {

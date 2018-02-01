@@ -36,12 +36,12 @@ router.register('entries', wall_views.EntryViewSet)
 router.register('likes', like_views.LikeViewSet)
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='auxiliary/index.html'), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'api-token-auth/', auth_views.obtain_auth_token),
-    url(r'', include('social_django.urls', namespace='social')),
+    url(r'', TemplateView.as_view(template_name='auxiliary/index.html'), name='index'),
+#    url(r'', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

@@ -1,37 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
-import { createStore, applyMiddleware } from 'redux';
-import { combineReducers } from 'redux-immutable';
 import { Provider } from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
-import Immutable from 'immutable';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
-import routerReducer from './reducers/router-reducer'
+// components
+import App from './components/app';
+import Login from './components/Login';
+import Logout from './components/Logout';
 
+// styles
 import '../../static/css/style.css';
 
-const initialState = Immutable.Map();
+// store & history
+import { store, history } from './init';
 
-const reds = combineReducers({
-    routing: routerReducer
-});
 
-const history = createHistory();
 
-const middleware = routerMiddleware(history);
+function PrivateRoute ({component: Component, ...rest}) {
+    return (
+        <Route
+            {...rest}
+            render={(props) => store.getState().get('token') !== ''
+                ? <Component {...props} />
+                : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+        />
+    )
+}
 
-const store = createStore(reds, initialState, applyMiddleware(middleware));
 
 ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
+                    <Route exact path='/login' component={Login} />
+                    <Route exact path='/logout' component={Logout} />
                     <Route exact path='/' render={() => <Link to='/wall'>AAA</Link>} />
-                    <Route path='/wall' component={App} />
+                    <PrivateRoute path='/wall' component={App} />
                 </Switch>
             </ConnectedRouter>
         </Provider>,

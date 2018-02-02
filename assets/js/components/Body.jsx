@@ -5,6 +5,7 @@ import PostForm from './PostForm';
 import Wall from './Wall';
 import apiUrls from '../../constants/apiUrls'
 
+import { store } from '../init'
 
 class Body extends React.Component {
     propsTypes = {
@@ -26,7 +27,7 @@ class Body extends React.Component {
 
         
         fetch(apiUrls[this.pageToAPI[this.props.page]], {
-            credentials: 'include',
+            headers: { Authorization: 'Token '.concat(store.getState().get('token'))}
         }).then(
             body => body.json()
         ).then(

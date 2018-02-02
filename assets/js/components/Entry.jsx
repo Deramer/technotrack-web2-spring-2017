@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 class Entry extends React.Component {
-    static PropTypes = {
+    static propTypes = {
         id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
         user_id: PropTypes.number.isRequired, 

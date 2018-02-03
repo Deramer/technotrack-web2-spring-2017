@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import apiUrls from '../../constants/apiUrls';
-
+import { store } from '../init';
 
 class PostForm extends React.Component {
 
@@ -17,13 +17,12 @@ class PostForm extends React.Component {
         e.preventDefault();
         fetch(apiUrls.postList, {
             method: 'POST',
-            credentials: 'include',
-            headers: { 'content-type': 'application/json', 'x-csrftoken': document.cookie.match(/csrftoken=([^;]+)/)[1] },
+            headers: {  Authorization: 'Token '.concat(store.getState().get('token')), 'content-type': 'application/json', 'x-csrftoken': document.cookie.match(/csrftoken=([^;]+)/)[1] },
             body: JSON.stringify(this.state),
         }).then(
             body => body.json()
         ).then(
-            json => this.props.onPostCreate(json)
+            json => null
         );
     }
 
@@ -31,7 +30,7 @@ class PostForm extends React.Component {
         return (
             <div className='post-form'>
                 <form method='post'>
-                    <textarea className='post-form-field' name='text' onChange={ this.onChange } value={ this.state.text }/>
+                    <textarea className='post-form-field' rows='8' columns='200' name='text' onChange={ this.onChange } value={ this.state.text }/>
                     <div className='post-form-button'>
                         <button onClick={ this.onClick }>Create</button>
                     </div>

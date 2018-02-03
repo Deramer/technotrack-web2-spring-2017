@@ -32,6 +32,7 @@ router = routers.DefaultRouter()
 router.register('posts', post_views.PostViewSet)
 router.register('users', user_views.UserViewSet)
 router.register('follows', user_views.UserToUserViewSet)
+router.register('self', user_views.SelfView)
 router.register('entries', wall_views.EntryViewSet)
 router.register('likes', like_views.LikeViewSet)
 

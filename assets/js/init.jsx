@@ -7,6 +7,7 @@ import { combineReducers } from 'redux-immutable';
 // reducers
 import routerReducer from './reducers/router-reducer'
 import tokenReducer from './reducers/token_reducer'
+import selfReducer from './reducers/self_reducer'
 
 
 const initialState = Immutable.Map();
@@ -17,7 +18,8 @@ const middleware = routerMiddleware(history);
 
 const reds = combineReducers({
     routing: routerReducer,
-    token: tokenReducer
+    token: tokenReducer,
+    self: selfReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

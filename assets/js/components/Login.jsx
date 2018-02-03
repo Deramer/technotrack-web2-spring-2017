@@ -37,7 +37,7 @@ class Login extends React.Component {
                     if (this.props.location.state && this.props.location.state.from) {
                         history.push(this.props.location.state.from)
                     } else {
-                        push('/wall')
+                        history.push('/self')
                     }
                 } else {
                     if (json.non_field_errors) {
@@ -58,9 +58,9 @@ class Login extends React.Component {
                     this.state.nonFieldErrors.map(x => x.concat('\n')).reduce((x, y) => x.concat(y), '')
                 }</div>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <input type='text' id='username' name='username' onChange={this.onChange} value={this.state.username} />
+                    <input type='text' name='username' onChange={this.onChange} value={this.state.username} />
                     <br/>
-                    <input type='text' id='password' name='password' onChange={this.onChange} value={this.state.password} />
+                    <input type='password' name='password' onChange={this.onChange} value={this.state.password} />
                     <br/>
                     <button type='submit' className='form-submit'>
                         Login

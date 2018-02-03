@@ -9,6 +9,9 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import App from './components/app';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Self from './components/Self';
+import Friends from './components/Friends';
+import User from './components/User';
 
 // styles
 import '../../static/css/style.css';
@@ -36,8 +39,11 @@ ReactDOM.render(
                 <Switch>
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/logout' component={Logout} />
-                    <Route exact path='/' render={() => <Link to='/wall'>AAA</Link>} />
+                    <Route exact path='/' render={() => <Redirect to='/wall' />} />
                     <PrivateRoute path='/wall' component={App} />
+                    <PrivateRoute exact path='/self' component={Self} />
+                    <PrivateRoute exact path='/friends' component={Friends} />
+                    <PrivateRoute exact path='/user/:id' component={User} />
                 </Switch>
             </ConnectedRouter>
         </Provider>,

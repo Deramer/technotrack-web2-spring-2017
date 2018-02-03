@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import User, UserToUser
 from .serializers import UserSerializer, SelfSerializer, UserToUserSerializer
@@ -13,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (permissions.IsAuthenticated, ListReadOnly, IsUserOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsUserOrReadOnly)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -37,3 +38,12 @@ class UserToUserViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(from_user = self.request.user)
+
+
+class SelfView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def list(self, request):
+        return Response(SelfSerializer(request.user).data)

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 class Entry extends React.Component {
@@ -12,7 +13,7 @@ class Entry extends React.Component {
 
     render() {
         return (<div className='post' data-id={ this.props.id }>
-            <div className='entry-author' data-id={ this.props.user_id }>{ this.props.user_username }</div>
+            <Link to={'/user/'.concat(this.props.user_id, '/')}className='entry-author' data-id={ this.props.user_id }>{ this.props.user_username }</Link>
             <div className='entry-text'>{ this.props.text }</div>
         </div>);
         

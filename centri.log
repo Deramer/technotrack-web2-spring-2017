@@ -1,0 +1,29 @@
+[I]: 2018/02/03 16:37:10 Config path: /etc/centrifugo/config.json
+[I]: 2018/02/03 16:37:10 Version: 1.7.5
+[I]: 2018/02/03 16:37:10 PID: 15587
+[I]: 2018/02/03 16:37:10 Engine: In memory – single node only
+[I]: 2018/02/03 16:37:10 GOMAXPROCS: 4
+[W]: 2018/02/03 16:37:10 Running in DEBUG mode
+[I]: 2018/02/03 16:37:10 SockJS url: //cdn.jsdelivr.net/sockjs/1.1/sockjs.min.js
+[I]: 2018/02/03 16:37:10 Start serving raw websocket, SockJS, API, admin, web, debug endpoints on :8000
+[D]: 2018/02/03 16:37:19 GET /socket from 127.0.0.1:46482 completed in 289.21µs
+[D]: 2018/02/03 16:37:19 New admin session established with uid f320c2a2-b04a-47ec-8b02-b07bce21241a
+[D]: 2018/02/03 16:37:19 GET /connection/websocket from 127.0.0.1:46484 completed in 177.899µs
+[D]: 2018/02/03 16:37:19 New raw websocket session established with uid f92a647c-b4de-4880-9c77-7143f1bf0394
+[I]: 2018/02/03 16:37:54 Signal received: interrupt
+[I]: 2018/02/03 16:37:54 Shutting down
+[D]: 2018/02/03 16:37:54 Closing connection f92a647c-b4de-4880-9c77-7143f1bf0394 (user ): shutting down
+[I]: 2018/02/03 16:38:29 Config path: /etc/centrifugo/config.json
+[I]: 2018/02/03 16:38:29 Version: 1.7.5
+[I]: 2018/02/03 16:38:29 PID: 15639
+[I]: 2018/02/03 16:38:29 Engine: In memory – single node only
+[I]: 2018/02/03 16:38:29 GOMAXPROCS: 4
+[I]: 2018/02/03 16:38:29 SockJS url: //cdn.jsdelivr.net/sockjs/1.1/sockjs.min.js
+[I]: 2018/02/03 16:38:29 Start serving raw websocket, SockJS, API, admin, web endpoints on :8000
+[D]: 2018/02/03 16:38:44 GET /socket from 127.0.0.1:46506 completed in 394.799µs
+[D]: 2018/02/03 16:38:44 New admin session established with uid 801b12fb-a81b-4c52-9711-af0df6bd3687
+[D]: 2018/02/03 16:38:48 GET /connection/websocket from 127.0.0.1:46508 completed in 140.867µs
+[D]: 2018/02/03 16:38:48 New raw websocket session established with uid 3d6249d8-dde1-4bba-b53c-43813c34b935
+[I]: 2018/02/03 16:39:38 Signal received: interrupt
+[I]: 2018/02/03 16:39:38 Shutting down
+[D]: 2018/02/03 16:39:38 Closing connection 3d6249d8-dde1-4bba-b53c-43813c34b935 (user ): shutting down

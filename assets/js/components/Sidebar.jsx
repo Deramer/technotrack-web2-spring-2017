@@ -26,7 +26,8 @@ class Sidebar extends React.Component {
             token: params.token,
             timestamp: params.timestamp
         });
-        centrifuge.subscribe('posts', this.centrifugeListener.bind(this));
+        centrifuge.subscribe('posts', x => console.log("msg", x));//this.centrifugeListener.bind(this));
+        centrifuge.on('connect', x => console.log("Ok, ", x))
         centrifuge.connect();
     }
 

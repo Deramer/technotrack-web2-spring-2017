@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'api-token-auth/', auth_views.obtain_auth_token),
+    #url(r'^auxiliary/centri/', TemplateView.as_view(template_name='auxiliary/centrifuge.html'), name='aux_centri'),
     url(r'', TemplateView.as_view(template_name='auxiliary/index.html'), name='index'),
 #    url(r'', include('social_django.urls', namespace='social')),
 ]

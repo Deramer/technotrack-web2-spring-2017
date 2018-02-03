@@ -38,6 +38,7 @@ router.register('likes', like_views.LikeViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^centri/', user_views.CentrifugoParameters.as_view()),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'api-token-auth/', auth_views.obtain_auth_token),

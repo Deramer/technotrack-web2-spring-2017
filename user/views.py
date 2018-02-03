@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.views.generic import View
+from django.http import JsonResponse
 
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from adjacent import get_connection_parameters
 
 from .models import User, UserToUser
 from .serializers import UserSerializer, SelfSerializer, UserToUserSerializer
@@ -47,3 +51,11 @@ class SelfView(viewsets.ModelViewSet):
 
     def list(self, request):
         return Response(SelfSerializer(request.user).data)
+
+
+class CentrifugoParameters(View):
+    def get(self, request):
+        if (request.user):
+            params = get_connection_parameters(request.user)
+            return JsonResponse(params)
+        return JsonResponse({'error': 'user not authenticated'})

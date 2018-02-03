@@ -10,7 +10,6 @@ class App extends React.Component {
     render() {
         return (
             <div className='container'>
-                <div className='header'><Header /></div>
                 <div className='layout'>
                     <div className='body'><Body page={ this.state.page }/></div>
                 </div>

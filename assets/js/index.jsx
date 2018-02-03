@@ -12,6 +12,8 @@ import Logout from './components/Logout';
 import Self from './components/Self';
 import Friends from './components/Friends';
 import User from './components/User';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
 // styles
 import '../../static/css/style.css';
@@ -36,15 +38,25 @@ function PrivateRoute ({component: Component, ...rest}) {
 ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
-                <Switch>
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/logout' component={Logout} />
-                    <Route exact path='/' render={() => <Redirect to='/wall' />} />
-                    <PrivateRoute path='/wall' component={App} />
-                    <PrivateRoute exact path='/self' component={Self} />
-                    <PrivateRoute exact path='/friends' component={Friends} />
-                    <PrivateRoute exact path='/user/:id' component={User} />
-                </Switch>
+                <div>
+                    <div className='header'><Header  /></div>
+                    <div className='layout'>
+                        <div style={{'maxWidth': 700}}>
+                            <Switch>
+                                <Route exact path='/login' component={Login} />
+                                <Route exact path='/logout' component={Logout} />
+                                <Route exact path='/' render={() => <Redirect to='/wall' />} />
+                                <PrivateRoute path='/wall' component={App} />
+                                <PrivateRoute exact path='/self' component={Self} />
+                                <PrivateRoute exact path='/friends' component={Friends} />
+                                <PrivateRoute exact path='/user/:id' component={User} />
+                            </Switch>
+                        </div>
+                        <div style={{position: 'absolute', right: 5, top: 10}}>
+                            <Sidebar />
+                        </div>
+                    </div>
+            </div>
             </ConnectedRouter>
         </Provider>,
         document.getElementById('root'),

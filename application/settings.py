@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'social_django',
     'webpack_loader',
+    'adjacent',
 ]
 
 MIDDLEWARE = [
@@ -173,3 +174,7 @@ WEBPACK_LOADER = {
             'STATS_FILES': os.path.join(BASE_DIR, 'webpack-stats.json'),
         },
 }
+
+CENTRIFUGE_ADDRESS = 'http://web2.lvh.me'
+CENTRIFUGE_SECRET = "09586963-5eab-400d-898f-dd6327cff51b"
+CENTRIFUGE_TIMEOUT = 10

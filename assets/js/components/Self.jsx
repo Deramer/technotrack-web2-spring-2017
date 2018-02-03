@@ -51,7 +51,6 @@ class Self extends React.Component {
         for (let i in this.state.selfInfo) arr.push(<p key={i}>{i}: {this.state.selfInfo[i]}</p>);
         return (
                 <div className='container'>
-                    <div className='header'><Header /></div>
                     <div>{ arr }</div>
                     <p>Create post:</p>
                     <PostForm onPostCreate={ this.onPostCreate }/>

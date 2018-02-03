@@ -8,7 +8,6 @@ class User extends React.Component {
         console.log(this.props.match)
         return (
             <div className='container'>
-                <div className='header'><Header  /></div>
                 <UserInner match={ this.props.match } />
             </div>
         );

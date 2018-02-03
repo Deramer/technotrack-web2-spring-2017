@@ -4,6 +4,7 @@ const apiUrls = {
     login: '/api-token-auth/',
     user: '/api/users/',
     self: '/api/self/',
+    centrifugo: '/centri/',
 };
 
 export default apiUrls;

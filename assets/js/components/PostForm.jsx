@@ -15,14 +15,14 @@ class PostForm extends React.Component {
 
     onClick = e => {
         e.preventDefault();
-        fetch(apiUrls.postList, {
+        fetch(apiUrls.posts, {
             method: 'POST',
             headers: {  Authorization: 'Token '.concat(store.getState().get('token')), 'content-type': 'application/json', 'x-csrftoken': document.cookie.match(/csrftoken=([^;]+)/)[1] },
             body: JSON.stringify(this.state),
         }).then(
             body => body.json()
         ).then(
-            json => null
+            json => this.props.onPostCreate(json)
         );
     }
 

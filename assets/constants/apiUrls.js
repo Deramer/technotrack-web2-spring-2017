@@ -1,5 +1,5 @@
 const apiUrls = {
-    postList: '/api/posts/',
+    posts: '/api/posts/',
     wall: '/api/entries/',
     login: '/api-token-auth/',
     user: '/api/users/',
